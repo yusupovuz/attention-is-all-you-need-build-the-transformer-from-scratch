@@ -9,26 +9,34 @@ import numpy as np
 # Step 1 - build_token_to_id_vocab
 def build_token_to_id_vocab(sentences, specials=('<pad>', '<bos>', '<eos>', '<unk>')):
     # TODO: build a token-to-id dict with specials first, then corpus tokens in first-seen order.
-    ls = len(specials)
-    res = {}
-    for i in range(ls):
-        res[specials[i]] = i
+    # ls = len(specials)
+    # res = {}
+    # for i in range(ls):
+    #     res[specials[i]] = i
     
-    words = []
+    # words = []
 
-    for i in sentences:
-        words.append(i.split())
+    # for i in sentences:
+    #     words.append(i.split())
     
-    d = []
+    # d = []
 
-    for i in words:
-        for j in i:
-            if j not in d and j not in specials:
-                d.append(j)
+    # for i in words:
+    #     for j in i:
+    #         if j not in d and j not in specials:
+    #             d.append(j)
     
-    for i in range(len(d)):
-        res[d[i]] = ls+i
+    # for i in range(len(d)):
+    #     res[d[i]] = ls+i
 
+    # return res
+
+    res = {token: idx for idx,token in enumerate(specials)}
+
+    for sentence in sentences:
+        for token in sentence.split():
+            if token not in res:
+                res[token] = len(res)
     return res
 
 # Step 2 - build_id_to_token_vocab (not yet solved)
