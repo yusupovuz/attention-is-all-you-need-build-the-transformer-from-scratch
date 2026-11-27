@@ -99,12 +99,14 @@ def compute_positional_div_term(d_model):
     
     oned = torch.arange(start=0,end=d_model,step=2,dtype=torch.float32)
 
-    div_terms = []
+    # div_terms = []
 
-    for i in oned:
-        div_terms.append(1/(torch.pow(10000,(i / d_model))))
+    # for i in oned:
+    #     div_terms.append(1/(torch.pow(10000,(i / d_model))))
     
-    return torch.tensor(div_terms)
+    # return torch.tensor(div_terms)
+
+    return 10000 ** (-oned/d_model)
 
 # Step 9 - build_position_index_column (not yet solved)
 # TODO: implement
